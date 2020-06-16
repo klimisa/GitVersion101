@@ -30,7 +30,7 @@ steps:
     inputs:
       owner: 'klimisa'
       repository: 'GitVersion101'
-      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
+      token: 'GitVersion101'
       name: '$(GitVersion.SemVer)'
       inputFilePath: $(Build.SourcesDirectory)/rtext.md
 
