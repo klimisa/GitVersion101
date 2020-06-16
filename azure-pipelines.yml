@@ -3,17 +3,19 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-variables:
-  - name: GitVersion.SemVer
-      value: ''
+
 
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
-
+variables:
+  - name: GitVersion.SemVer
+    value: ''
 steps:
+
+        
   - bash: |
       ls -la /home/vsts/work/1/s
 
