@@ -10,8 +10,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+  - bash: |
+      ls -la /home/vsts/work/1/s
+
   - task: UseGitVersion@5
     inputs:
       versionSpec: '5.x'
       includePrerelease: true
       useConfigFile: true
+
+
