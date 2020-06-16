@@ -32,6 +32,7 @@ steps:
       repository: 'GitVersion101'
       token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
       name: '$(GitVersion.SemVer)'
+      inputFilePath: $(Build.SourcesDirectory)/rtext.md
 
   # - task: gitreleasemanager/publish@0
   #   inputs:
