@@ -26,15 +26,6 @@ steps:
   - bash: |
       echo "SemVer: $(GitVersion.SemVer)"
       
-  - task: gitreleasemanager/create@0
-    inputs:
-      owner: 'klimisa'
-      repository: 'GitVersion101'
-      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      name: '$(GitVersion.SemVer)'
-      inputFilePath: '$(Build.SourcesDirectory)/rtext.md'
-      targetDirectory: '$(Build.SourcesDirectory)'
-
     - task: gitreleasemanager/create@0
       displayName: Create release with GitReleaseManager
       inputs:
