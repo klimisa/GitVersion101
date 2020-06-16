@@ -25,7 +25,13 @@ steps:
 
   - bash: |
       echo "SemVer: $(GitVersion.SemVer)"
-      
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'custom'
+      custom: 'tool install'
+      arguments: '--global GitReleaseManager.Tool'
+
   - task: gitreleasemanager/create@0
     displayName: Create release with GitReleaseManager
     inputs:
