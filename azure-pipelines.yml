@@ -40,5 +40,5 @@ steps:
       owner: 'klimisa'
       repository: 'GitVersion101'
       token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      tagName: $(GitVersion.SemVer)
+      tagName: '$(GitVersion.SemVer)'
       
