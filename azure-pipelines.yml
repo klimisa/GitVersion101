@@ -18,5 +18,7 @@ steps:
       versionSpec: '5.x'
       includePrerelease: true
       useConfigFile: true
+      configFilePath: '$(Build.SourcesDirectory)/GitVersion.yml'
+
 
 
