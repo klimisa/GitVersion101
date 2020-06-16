@@ -16,8 +16,7 @@ variables:
 steps:
 
         
-  - bash: |
-      ls -la /home/vsts/work/1/s
+
 
   - task: UseGitVersion@5
     inputs:
@@ -26,18 +25,21 @@ steps:
       useConfigFile: true
       configFilePath: '$(Build.SourcesDirectory)/GitVersion.yml'
 
-  - task: gitreleasemanager/create@0
-    inputs:
-      owner: 'antonios.klimis@gmail.com'
-      repository: 'GitVersion101'
-      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      name: $(GitVersion.SemVer)
+  - bash: |
+      echo "SemVer: $(GitVersion.SemVer)"
       
-  - task: gitreleasemanager/publish@0
-    inputs:
-      owner: 'antonios.klimis@gmail.com'
-      repository: 'GitVersion101'
-      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      tagName: $(GitVersion.SemVer)
-      targetDirectory: '$(Build.SourcesDirectory)'
+#  - task: gitreleasemanager/create@0
+#    inputs:
+#      owner: 'antonios.klimis@gmail.com'
+#      repository: 'GitVersion101'
+#      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
+#      name: $(GitVersion.SemVer)
+#      
+#  - task: gitreleasemanager/publish@0
+#    inputs:
+#      owner: 'antonios.klimis@gmail.com'
+#      repository: 'GitVersion101'
+#      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
+#      tagName: $(GitVersion.SemVer)
+#      targetDirectory: '$(Build.SourcesDirectory)'
       
