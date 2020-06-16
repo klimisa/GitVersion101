@@ -33,10 +33,10 @@ steps:
       token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
       name: '$(GitVersion.SemVer)'
 
-  - task: gitreleasemanager/publish@0
-    inputs:
-      owner: 'klimisa'
-      repository: 'GitVersion101'
-      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      tagName: '$(GitVersion.SemVer)'
-      
+  # - task: gitreleasemanager/publish@0
+  #   inputs:
+  #     owner: 'klimisa'
+  #     repository: 'GitVersion101'
+  #     token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
+  #     tagName: '$(GitVersion.SemVer)'
+
