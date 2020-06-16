@@ -3,6 +3,10 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+  - name: GitVersion.SemVer
+      value: ''
+
 trigger:
 - master
 
@@ -25,15 +29,13 @@ steps:
       owner: 'antonios.klimis@gmail.com'
       repository: 'GitVersion101'
       token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      name: $(gitversion.semver)
-      arguments: '--verbose'
+      name: $(GitVersion.SemVer)
       
   - task: gitreleasemanager/publish@0
     inputs:
       owner: 'antonios.klimis@gmail.com'
       repository: 'GitVersion101'
       token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      tagName: $(gitversion.semver)
+      tagName: $(GitVersion.SemVer)
       targetDirectory: '$(Build.SourcesDirectory)'
-      arguments: '--verbose'
-
+      
