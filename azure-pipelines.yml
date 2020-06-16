@@ -35,6 +35,16 @@ steps:
       inputFilePath: '$(Build.SourcesDirectory)/rtext.md'
       targetDirectory: '$(Build.SourcesDirectory)'
 
+    - task: gitreleasemanager/create@0
+      displayName: Create release with GitReleaseManager
+      inputs:
+        token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
+        owner: 'klimisa'
+        repository: 'GitVersion101'
+        name: '$(GitVersion.SemVer)'
+        assets: |
+          GitVersion101.Api/Controllers/WeatherForecastController.cs
+          
   # - task: gitreleasemanager/publish@0
   #   inputs:
   #     owner: 'klimisa'
