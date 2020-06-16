@@ -33,7 +33,7 @@ steps:
       owner: 'antonios.klimis@gmail.com'
       repository: 'GitVersion101'
       token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      name: $(GitVersion.SemVer)
+      name: 0.1.12-ci.6
 
   - task: gitreleasemanager/publish@0
     inputs:
