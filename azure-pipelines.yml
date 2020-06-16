@@ -26,15 +26,15 @@ steps:
   - bash: |
       echo "SemVer: $(GitVersion.SemVer)"
       
-    - task: gitreleasemanager/create@0
-      displayName: Create release with GitReleaseManager
-      inputs:
-        token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-        owner: 'klimisa'
-        repository: 'GitVersion101'
-        name: '$(GitVersion.SemVer)'
-        assets: |
-          GitVersion101.Api/Controllers/WeatherForecastController.cs
+  - task: gitreleasemanager/create@0
+    displayName: Create release with GitReleaseManager
+    inputs:
+      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
+      owner: 'klimisa'
+      repository: 'GitVersion101'
+      name: '$(GitVersion.SemVer)'
+      assets: |
+        GitVersion101.Api/Controllers/WeatherForecastController.cs
           
   # - task: gitreleasemanager/publish@0
   #   inputs:
