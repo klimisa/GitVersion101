@@ -1,0 +1,13 @@
+name: 0.$(System.PullRequest.PullRequestId)$(Rev:.r)-pr
+
+trigger:
+  batch: false
+  branches:
+    exclude:
+      - master
+  paths:
+    exclude:
+      - README.md
+
+jobs:
+  - template: azure-pipelines-common.yml
