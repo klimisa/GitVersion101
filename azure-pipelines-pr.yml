@@ -1,4 +1,4 @@
-name: 0.$(System.PullRequest.PullRequestId)$(Rev:.r)-pr
+name: 0.$(System.PullRequest.PullRequestNumber)$(Rev:.r)-pr
 
 trigger:
   batch: false
