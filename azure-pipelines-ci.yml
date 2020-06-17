@@ -1,0 +1,10 @@
+name: 1.0$(Rev:.r)
+
+trigger:
+  batch: false
+  branches:
+    include:
+      - master
+
+jobs:
+  - template: azure-pipelines-common.yml
