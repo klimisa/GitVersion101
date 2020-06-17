@@ -1,9 +1,10 @@
 name: pr-$(System.PullRequest.PullRequestNumber)$(Rev:.r)
 
-trigger:
-  batch: false
+trigger: none
+
+pr:
   branches:
-    exclude:
+    include:
       - master
   paths:
     exclude:
