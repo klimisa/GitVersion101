@@ -3,10 +3,13 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-
+name: $(Build.SourceBranchName)-1.0$(Rev:.r)
 
 trigger:
-- master
+  batch: false
+  branches:
+    include:
+      - master
 
 variables:
   - name: GitVersion.SemVer
@@ -16,42 +19,23 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - task: UseDotNet@2
-    displayName: ".NET Core 3.1.x"
-    inputs:
-      version: "3.1.103"
-      packageType: sdk
-      
-  - task: UseGitVersion@5
-    inputs:
-      versionSpec: '5.x'
-      includePrerelease: true
-      useConfigFile: true
-      configFilePath: '$(Build.SourcesDirectory)/GitVersion.yml'
-
   - bash: |
-      echo "SemVer: $(GitVersion.SemVer)"
-      
-  - task: DotNetCoreCLI@2
-    inputs:
-      command: 'custom'
-      custom: 'tool install'
-      arguments: '--global GitReleaseManager.Tool'
-
-  - task: gitreleasemanager/create@0
-    displayName: Create release with GitReleaseManager
-    inputs:
-      token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-      owner: 'klimisa'
-      repository: 'GitVersion101'
-      name: '$(GitVersion.SemVer)'
-      assets: |
-        GitVersion101.Api/Controllers/WeatherForecastController.cs
-          
-  # - task: gitreleasemanager/publish@0
-  #   inputs:
-  #     owner: 'klimisa'
-  #     repository: 'GitVersion101'
-  #     token: 'a76d46aadce152c35db52ba48679b07fe6ac5e5f'
-  #     tagName: '$(GitVersion.SemVer)'
+      if [ "$(Build.SourceBranchName)" == "master" ]; then
+        echo "Versioning for master build"
+        version=$(echo "$(Build.BuildNumber)" | cut -d "-" -f 2)
+        echo "##vso[task.setvariable variable=version]$version"
+        echo "##vso[task.setvariable variable=imageName]$(repositoryName):$version"
+      elif [ -n "$(System.PullRequest.PullRequestId)" ]; then
+        echo "Versioning for PR build"
+        version=0.$(System.PullRequest.PullRequestId).$(build.buildId)
+        echo "##vso[task.setvariable variable=version]$version"
+        echo "##vso[task.setvariable variable=imageName]$(repositoryName):$version-pr"
+      else
+        echo "Branch is not for master nor a pull request"
+        exit 1
+      fi
+    displayName: 'Set version and imageName variables'
+    
+  - bash: |
+      echo "docker build --build-arg version=$(version) -t $(imageName) package"
 
