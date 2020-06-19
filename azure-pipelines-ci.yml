@@ -1,4 +1,4 @@
-name: 0.3$(Rev:.r)
+name: 0.4$(Rev:.r)
  
 pr:
   branches:
@@ -12,4 +12,4 @@ trigger:
       - master
   
 jobs:
-  - template: azure-pipelines-common.yml
+  - template: .devops/azure-pipelines-common.yml

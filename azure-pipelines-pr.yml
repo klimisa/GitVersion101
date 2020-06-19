@@ -11,4 +11,4 @@ pr:
       - README.md
 
 jobs:
-  - template: azure-pipelines-common.yml
+  - template: .devops/azure-pipelines-common.yml
