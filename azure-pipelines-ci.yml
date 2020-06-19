@@ -1,5 +1,5 @@
-name: 1.0$(Rev:.r)
-
+name: 0.3$(Rev:.r)
+ 
 pr:
   branches:
     exclude:
